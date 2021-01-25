@@ -1,1 +1,1 @@
-These are my ROS Packages to play around with.
+These are my ROS Packages for training C++, ROS and Qt
