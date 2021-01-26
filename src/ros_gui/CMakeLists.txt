@@ -5,12 +5,18 @@ project(ros_gui)
 add_compile_options(-std=c++11)
 
 ## Set QT specific stuff
+# Find includes in the build directories
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
+# Turn on automatic invocation of the MOC, UIC & RCC
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(CMAKE_PREFIX_PATH "~/Qt/6.0.0/gcc_64")
+# Set OpenGL
+set(OpenGL_GL_PREFERENCE "GLVND")
 
+# Find Qt packages
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick REQUIRED)
 find_package(Qt6 COMPONENTS Core Quick REQUIRED)
 
@@ -18,7 +24,7 @@ find_package(Qt6 COMPONENTS Core Quick REQUIRED)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  geometry_msgs
+  #geometry_msgs
   roscpp
 )
 
@@ -142,7 +148,7 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
- add_executable(${PROJECT_NAME}_node src/main.cpp)
+ add_executable(${PROJECT_NAME}_node src/main.cpp src/RobotThread.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the

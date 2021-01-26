@@ -1,22 +1,22 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-//#include <QQmlContext>
+#include <QQmlContext>
 
-//#include "appcore.h"
+#include "../include/RobotThread.h"
 
 int main(int argc, char *argv[])
 {
 
-    //AppCore appCore;
+    RobotThread robotThread(argc, argv, "gui_command");
 
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
-    //QQmlContext *context = engine.rootContext();
+    QQmlContext *context = engine.rootContext();
 
-    //context->setContextProperty("appCore", &appCore);
+    context->setContextProperty("robotThread", &robotThread);
 
-    const QUrl url(QStringLiteral("qrc:/main.qml"));
+    const QUrl url(QStringLiteral("qrc:/ui/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {
         if (!obj && url == objUrl)
