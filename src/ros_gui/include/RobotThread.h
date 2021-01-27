@@ -20,13 +20,10 @@ public:
     virtual ~RobotThread();
 
     bool init();
-    void poseCallback();
 
 public slots:
     void run();
 
-signals:
-    void newPose();
 
 private:
     int m_Init_argc;

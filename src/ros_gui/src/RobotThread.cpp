@@ -34,7 +34,8 @@ bool RobotThread::init()
 
     ros::init(m_Init_argc, m_pInit_argv, m_topic);
 
-    if (!ros::master::check()){
+    if (!ros::master::check())
+    {
         return false;
     }
 
@@ -75,7 +76,6 @@ void RobotThread::run()
         loop_rate.sleep();
 
         delete pMutex;
-
     }
 }
 
